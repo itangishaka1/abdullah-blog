@@ -1,0 +1,10 @@
+
+.home {
+
+    &__posts {
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 15rem;
+    }
+}

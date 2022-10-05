@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
-import Home from './pages/Home'
+import Home from './pages/Home/Home'
 import Register from './pages/Register'
 import SinglePost from './pages/SinglePost'
 import WritePost from './pages/WritePost'
