@@ -1,0 +1,60 @@
+@use '../../partials/variables' as *;
+
+.login {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $green-color;
+
+    h1 {
+        font-size: 2rem;
+        color: $dark-color;
+        margin-bottom: 2rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        padding: 5rem;
+        // background-color: $light-color;
+        background-color: #FFF;
+        width: 30rem;
+        gap: 2rem;
+
+//         -webkit-box-shadow: 0px 0px 4px 1px $green-color; 
+// box-shadow: 0px 0px 4px 1px $green-color;
+
+        input {
+            padding: 1rem;
+            border: none;
+            border-bottom: 1px solid grey;
+            color: inherit;
+        }
+
+        button {
+            padding: 1rem;
+            border: transparent;
+            background-color: $red-color;
+            color: $dark-color;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.2rem;
+            color:  $red-color;
+            text-align: center;
+        }
+
+        span {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    }
+}
+
+// $light-color
+// $red-color
+// $green-color
+// $dark-color

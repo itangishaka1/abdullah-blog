@@ -3,7 +3,7 @@ import Home from './pages/Home'
 import Register from './pages/Register'
 import SinglePost from './pages/SinglePost'
 import WritePost from './pages/WritePost'
-import Login from './pages/Login'
+import Login from './pages/Login/Login'
 import Layout from './components/Layout/Layout'
 
 import './App.scss'
