@@ -1,0 +1,22 @@
+@use './partials/mixins' as *;
+
+
+.App {
+    display: flex;
+    justify-content: center;
+
+    &__container {
+        width: 90%;
+        margin: 0 auto;
+
+        @include tablet{
+            width: 86%;
+        }
+
+        @include desktop{
+            width: 70%;
+        }
+      }
+
+}
+
