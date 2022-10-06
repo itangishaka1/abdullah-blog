@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Register from './pages/Register'
 import SinglePost from './pages/SinglePost/SinglePost'
-import WritePost from './pages/WritePost'
+import WritePost from './pages/WritePost/WritePost'
 import Login from './pages/Login/Login'
 import Layout from './components/Layout/Layout'
 
