@@ -1,42 +1,26 @@
 import './Home.scss'
 import Post from '../../components/Post/Post'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 
 
 const Home = () => {
-  const posts = [
-    {
-      id: 1,
-      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, debitis.",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis rerum quisquam id nesciunt adipisci ullam laudantium facilis doloremque aliquam officiis.",
-      img: "https://images.unsplash.com/photo-1513001900722-370f803f498d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-    },
-    {
-      id: 2,
-      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, debitis.",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis rerum quisquam id nesciunt adipisci ullam laudantium facilis doloremque aliquam officiis.",
-      img: "https://images.unsplash.com/photo-1576179635662-9d1983e97e1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-    },
-    {
-      id: 3,
-      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, debitis.",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis rerum quisquam id nesciunt adipisci ullam laudantium facilis doloremque aliquam officiis.",
-      img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-    },
-    {
-      id: 4,
-      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, debitis.",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis rerum quisquam id nesciunt adipisci ullam laudantium facilis doloremque aliquam officiis.",
-      img: "https://images.unsplash.com/photo-1629838090959-4bb0370016ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-    },
-    {
-      id: 5,
-      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, debitis.",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis rerum quisquam id nesciunt adipisci ullam laudantium facilis doloremque aliquam officiis.",
-      img: "https://images.unsplash.com/photo-1569396327972-6231a5b05ea8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=778&q=80"
-    },
-  ]
-  
+  const [posts, setPosts] = useState([])
 
+  const cat = useLocation().search
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5050/api/posts${cat}`)
+        setPosts(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchData()
+  }, [cat])
 
   return (
     <main className='home'>

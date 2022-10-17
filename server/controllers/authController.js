@@ -1,7 +1,6 @@
 import bcrypt from 'bcryptjs'
 import { db } from '../database.js'
 import jwt from 'jsonwebtoken'
-import { json } from 'express'
 
 export const register = (req, res) => {
   // CHECK EXISTING USER
