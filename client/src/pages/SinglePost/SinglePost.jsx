@@ -1,10 +1,10 @@
 import './SinglePost.scss'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-import {MdDelete } from 'react-icons/md'
+import { MdDelete } from 'react-icons/md'
 import { GrEdit } from 'react-icons/gr'
 import Menu from '../../components/Menu/Menu'
-import { useEffect, useState , useContext} from 'react'
+import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import moment from 'moment'
 import { AuthContext } from '../../context/authContext'
@@ -17,6 +17,9 @@ const SinglePost = () => {
   const postId = location.pathname.split('/')[2]
 
   const { currentUser } = useContext(AuthContext)
+
+  const navigate = useLocation()
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,18 +33,26 @@ const SinglePost = () => {
     fetchData()
   }, [postId])
 
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:5050/api/posts/${postId}`)
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  if (!post) return <p>Loading...</p>
+
   return (
     <section className='single-post'>
       <div className='single-post__content'>
         <img src={post?.img} alt='' />
         <div className='single-post__user'>
-          <img
-            src='https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80'
-            alt=''
-          />
+          {post.userImg && <img src={post.userImg} alt='' />}
 
           <div className='single-post__info'>
-            <span>{post.username}</span>
+            <span>{post.title}</span>
             <p>Posted {moment(post.date).fromNow()}</p>
           </div>
           {currentUser.username === post.username && (
@@ -54,7 +65,7 @@ const SinglePost = () => {
                   <GrEdit className='single-post__icon' />
                 </Link>
                 <div className='single-post__icon-container single-post__icon-container--red'>
-                  <MdDelete className='single-post__icon' />
+                  <MdDelete className='single-post__icon' onClick={handleDelete} />
                 </div>
               </div>
             </div>
