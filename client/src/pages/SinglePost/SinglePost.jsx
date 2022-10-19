@@ -75,7 +75,7 @@ const SinglePost = () => {
         {post.desc}
       </div>
       <div className='single-post__menu'>
-        <Menu />
+        <Menu cat={post.cat} />
       </div>
     </section>
   )
