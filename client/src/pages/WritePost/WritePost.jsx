@@ -2,6 +2,7 @@ import './WritePost.scss'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useState } from 'react'
+import axios from 'axios'
 
 const WritePost = () => {
   const [value, setValue] = useState('') // description
@@ -9,9 +10,21 @@ const WritePost = () => {
   const [img, setImg] = useState(null)
   const [cat, setCat] = useState('')
 
+  const upload = async() => {
+    try {
+      const formData = new FormData()
+      formData.append('file', img)
+      const res = await axios.post('http://localhost:5050/api/upload', formData)
+      console.log(res.data)
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleSubmit = async (e) =>{
     e.preventDefault()
-    
+    upload()
   }
   return (
     <section className='write-post'>
